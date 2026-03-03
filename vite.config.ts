@@ -3,7 +3,6 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [react()],
-  base: '/8thmarch/',
   esbuild: {
     logOverride: {
       'ignored-directive': 'silent',
