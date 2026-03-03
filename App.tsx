@@ -23,7 +23,6 @@ const App: React.FC = () => {
         <Navigation />
         <main className="min-h-screen font-sans bg-neutral-950">
           <Routes>
-            <Route path="*" element={<Navigate to="/venera" replace />} />
             <Route path="/venera" element={<Venera />} />
             <Route path="/lina" element={<Lina />} />
             <Route path="/dilnaz" element={<Dilnaz />} />
@@ -32,6 +31,7 @@ const App: React.FC = () => {
             <Route path="/banu" element={<Banu />} />
             <Route path="/aigerim" element={<Aigerim />} />
             <Route path="/bagila" element={<Bagila />} />
+            <Route path="/" element={<Navigate to="/venera" replace />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <ToastContainer
