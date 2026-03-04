@@ -14,6 +14,7 @@ import Alisa from './src/pages/Alisa';
 import Banu from './src/pages/Banu';
 import Aigerim from './src/pages/Aigerim';
 import Bagila from './src/pages/Bagila';
+import Aizeshka from './src/pages/Aizeshka';
 import NotFound from './src/pages/NotFound';
 
 const App: React.FC = () => {
@@ -23,14 +24,15 @@ const App: React.FC = () => {
         <Navigation />
         <main className="min-h-screen font-sans bg-neutral-950">
           <Routes>
-            <Route path="/venera" element={<Venera />} />
-            <Route path="/lina" element={<Lina />} />
-            <Route path="/dilnaz" element={<Dilnaz />} />
-            <Route path="/akku" element={<Akku />} />
-            <Route path="/alisa" element={<Alisa />} />
-            <Route path="/banu" element={<Banu />} />
-            <Route path="/aigerim" element={<Aigerim />} />
-            <Route path="/bagila" element={<Bagila />} />
+            <Route path="/q3dbgmez1zaad2g" element={<Venera />} />
+            <Route path="/2kiats4rculy0wr" element={<Lina />} />
+            <Route path="/f2fqq81hwn3yonn" element={<Dilnaz />} />
+            <Route path="/bnnvibqgsehbgd4" element={<Akku />} />
+            <Route path="/tiz7jcslyzalp4s" element={<Alisa />} />
+            <Route path="/0hko5f9l6r1z3ku" element={<Banu />} />
+            <Route path="/3p9yuuis013wuth" element={<Aigerim />} />
+            <Route path="/v8ko9y3ypqakjvp" element={<Bagila />} />
+            <Route path="/8wywvqx0ga0sg2q" element={<Aizeshka />} />
             <Route path="/" element={<Navigate to="/venera" replace />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
