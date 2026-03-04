@@ -45,18 +45,18 @@ const Aizere: React.FC = () => {
     const activeColor = mood ? moodColors[mood] : moodColors.default;
 
     const moodMessages = {
-        queen: "Правишь своим миром с изяществом. Настоящая королева знает себе цену.",
-        savage: "Огонь в глазах, уверенность в шагах. Никто не встанет на твоем пути.",
-        diamond: "Идеальна, редка и сияешь в любых условиях. Бриллиант чистой воды."
+        queen: "Ну чо за королева. Продолжай также править этим миром и моим сердцем",
+        savage: "Я обожаю огонь в твоих глазах, уверенность в твоих действиях. Никто не встанет на твоем пути, а если кто то и встанет то я им не позволю своей бицухой ХАХЗЫАПХ=ЫВХАХЫВАХЫ=АХВ",
+        diamond: "Ты красивая, идеальная и любые твои минус для меня плюс. Ты бриллиантищу просто бож"
     };
 
     const cards = [
-        { text: "Ты сияешь ярче любого софита." },
-        { text: "Твоя энергия — как стадионный концерт." },
-        { text: "Confidence level: World Tour." },
-        { text: "Ты — хит, который никогда не надоедает." },
-        { text: "Ты не просто звезда. Ты легенда." },
-        { text: "Shine loud. Shine proud." }
+        { text: "Who wants that perfect love story any way, anyway? Cliché, Cliché, Cliché, Cliché" },
+        { text: "OHH I LOVE YOU SO. BUT WHY I LOVE YOU, I'LL NEVER KNOW" },
+        { text: "Drunk in love we be all night, love, love" },
+        { text: "Ты моя звездочка, который никогда не надоедает." },
+        { text: "Ты для меня не просто человек. Ты легенда в моей истории." },
+        { text: "You and me would stop this love drought" }
     ];
 
     return (
@@ -159,7 +159,7 @@ const Aizere: React.FC = () => {
                                 transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
                                 className="bg-clip-text text-transparent bg-gradient-to-r from-white via-[#d4af37] to-white"
                             >
-                                С 8 Марта, Айзере —<br />Ты настоящая Queen.
+                                С 8 Марта, Айзешка —<br />Ты моя настоящая королева.
                             </motion.span>
                         </h1>
                         <motion.p
@@ -168,7 +168,7 @@ const Aizere: React.FC = () => {
                             transition={{ delay: 1, duration: 1.5 }}
                             className="text-xl md:text-3xl text-gray-400 font-light tracking-wide mt-4 md:mt-8"
                         >
-                            Сила. Грация. Уверенность. Идеальный ритм.
+                            Baddie, diva, slay Shawty :)
                         </motion.p>
                     </motion.div>
                 </section>
@@ -210,16 +210,16 @@ const Aizere: React.FC = () => {
 
                 {/* 3. CHOOSE YOUR MOOD */}
                 <section className="py-24 text-center w-full max-w-4xl">
-                    <h2 className="text-3xl md:text-4xl font-bold mb-12 text-gray-300 tracking-wider uppercase">Choose Your Mood</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold mb-12 text-gray-300 tracking-wider uppercase">Choose one of the modes</h2>
                     <div className="flex flex-col sm:flex-row gap-6 justify-center">
                         <button onClick={() => setMood('queen')} className="px-10 py-4 rounded-full text-xl font-medium border border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black transition-all shadow-[0_0_15px_rgba(212,175,55,0.2)] hover:shadow-[0_0_35px_rgba(212,175,55,0.6)]">
-                            Queen Mode 👑
+                            1.
                         </button>
                         <button onClick={() => setMood('savage')} className="px-10 py-4 rounded-full text-xl font-medium border border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-all shadow-[0_0_15px_rgba(239,68,68,0.2)] hover:shadow-[0_0_35px_rgba(239,68,68,0.6)]">
-                            Savage Mode 🔥
+                            2.
                         </button>
                         <button onClick={() => setMood('diamond')} className="px-10 py-4 rounded-full text-xl font-medium border border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-black transition-all shadow-[0_0_15px_rgba(34,211,238,0.2)] hover:shadow-[0_0_35px_rgba(34,211,238,0.6)]">
-                            Diamond Mode 💎
+                            3.
                         </button>
                     </div>
 
@@ -288,7 +288,7 @@ const Aizere: React.FC = () => {
                                 transition={{ delay: 1.5, duration: 1 }}
                                 className="text-3xl md:text-5xl text-purple-200 font-light italic drop-shadow-md"
                             >
-                                "You know the energy. You live the legacy."
+                                "Imperfections make you more beautiful."
                             </motion.p>
                         </motion.div>
 
@@ -348,11 +348,11 @@ const Aizere: React.FC = () => {
                             </button>
 
                             <h3 className="text-5xl md:text-7xl font-serif text-[#d4af37] mb-12 mt-4 tracking-wide shadow-black drop-shadow-lg">
-                                Ты — Искусство.
+                                Ты — идеальный соулмейт.
                             </h3>
                             <div className="space-y-8 text-xl md:text-3xl text-gray-200 font-light leading-relaxed">
                                 <p>
-                                    Ты не просто идешь по жизни — ты задаешь ей ритм.
+                                    Я не знал о твоём существовании, но я теперь не могу представить и дня без общения с тобой.
                                 </p>
                                 <p>
                                     В тебе сочетается невероятная сила и хрупкая элегантность.
@@ -362,7 +362,7 @@ const Aizere: React.FC = () => {
                                     Сияй. Вдохновляй. Покоряй.
                                 </p>
                                 <p className="italic text-gray-400 text-lg md:text-xl pt-12">
-                                    С праздником, бесподобная Айзере.
+                                    С праздником, бесподобная Айз.
                                 </p>
                             </div>
                         </motion.div>
@@ -391,4 +391,3 @@ const Aizere: React.FC = () => {
 };
 
 export default Aizere;
-
