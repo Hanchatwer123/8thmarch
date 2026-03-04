@@ -1,324 +1,394 @@
-import React, { useEffect, useRef, useState } from "react";
-    import { motion, AnimatePresence } from "framer-motion";
-    import { Sparkles } from "lucide-react";
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
-    // Ariana page with an embedded, keyboard-activated Secret Fan Mode Easter egg.
-    // All behavior, listeners and visuals are self-contained in this file.
+const Aizere: React.FC = () => {
+    const [mood, setMood] = useState<'queen' | 'savage' | 'diamond' | null>(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isSecretMode, setIsSecretMode] = useState(false);
+    const [windowDimensions, setWindowDimensions] = useState({ width: 1000, height: 1000 });
 
-    export default function Aizeshka(): JSX.Element {
-      const [secretActive, setSecretActive] = useState(false);
-      const [overlayVisible, setOverlayVisible] = useState(false);
-      const bufferRef = useRef<string>(""); // typed characters buffer
-      const timeoutRef = useRef<number | null>(null);
+    useEffect(() => {
+        setWindowDimensions({
+            width: window.innerWidth,
+            height: window.innerHeight
+        });
+    }, []);
 
-      // Normal particle intensity baseline; when secretActive is true they intensify.
-      const PARTICLE_COUNT = 18;
+    // Easter Egg logic
+    useEffect(() => {
+        if (isSecretMode) return;
 
-      useEffect(() => {
-        const handleKey = (e: KeyboardEvent) => {
-          const key = e.key;
+        let keyBuffer = '';
+        const handleKeyDown = (e: KeyboardEvent) => {
+            // Ignore modifier keys alone
+            if (['Shift', 'Control', 'Alt', 'Meta'].includes(e.key)) return;
 
-          // Only consider printable characters and Backspace
-          if (key.length === 1) {
-            // append char
-            bufferRef.current += key.toLowerCase();
-            if (bufferRef.current.length > 10) {
-              bufferRef.current = bufferRef.current.slice(-10);
+            keyBuffer = (keyBuffer + e.key).slice(-15).toLowerCase();
+
+            if (keyBuffer.includes('beyhive') || keyBuffer.includes('navy')) {
+                setIsSecretMode(true);
+                keyBuffer = ''; // reset buffer
             }
-          } else if (key === "Backspace") {
-            bufferRef.current = bufferRef.current.slice(0, -1);
-          } else {
-            return;
-          }
-
-          const buf = bufferRef.current;
-
-          // triggers: "beyhive" or "navy" (case-insensitive)
-          if (buf.endsWith("beyhive") || buf.endsWith("navy")) {
-            activateSecretMode();
-            // reset buffer after activation
-            bufferRef.current = "";
-          }
         };
 
-        window.addEventListener("keydown", handleKey);
-        return () => {
-          window.removeEventListener("keydown", handleKey);
-          if (timeoutRef.current) {
-            window.clearTimeout(timeoutRef.current);
-          }
-        };
-      }, []);
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [isSecretMode]);
 
-      const activateSecretMode = () => {
-        // Small debounce guard if rapidly triggered
-        if (secretActive) return;
-        setSecretActive(true);
-        // show overlay after a short lead-in for dramatic timing
-        timeoutRef.current = window.setTimeout(() => {
-          setOverlayVisible(true);
-        }, 250);
-      };
+    const moodColors = {
+        queen: 'from-amber-900/40 via-[#0b0b0f] to-[#0b0b0f]',
+        savage: 'from-red-900/40 via-[#0b0b0f] to-[#0b0b0f]',
+        diamond: 'from-cyan-900/40 via-[#0b0b0f] to-[#0b0b0f]',
+        default: 'from-purple-900/20 via-[#0b0b0f] to-[#0b0b0f]',
+    };
 
-      const deactivateSecretMode = () => {
-        setOverlayVisible(false);
-        // reduce effects gracefully: wait for overlay exit animation then fully turn off
-        window.setTimeout(() => {
-          setSecretActive(false);
-        }, 450);
-      };
+    const activeColor = mood ? moodColors[mood] : moodColors.default;
 
-      // Particle generator helper to produce deterministic styles
-      const particles = Array.from({ length: PARTICLE_COUNT }).map((_, i) => {
-        const left = (i * 13) % 100;
-        const top = (i * 7 + 8) % 100;
-        const size = 6 + (i % 4) * 2;
-        const delay = (i % 7) * 0.12;
-        return { id: i, left, top, size, delay };
-      });
+    const moodMessages = {
+        queen: "Правишь своим миром с изяществом. Настоящая королева знает себе цену.",
+        savage: "Огонь в глазах, уверенность в шагах. Никто не встанет на твоем пути.",
+        diamond: "Идеальна, редка и сияешь в любых условиях. Бриллиант чистой воды."
+    };
 
-      // Motion variants
-      const overlayVariants = {
-        hidden: { opacity: 0, scale: 0.92 },
-        visible: { opacity: 1, scale: 1 },
-        exit: { opacity: 0, scale: 0.96 },
-      };
+    const cards = [
+        { text: "Ты сияешь ярче любого софита." },
+        { text: "Твоя энергия — как стадионный концерт." },
+        { text: "Confidence level: World Tour." },
+        { text: "Ты — хит, который никогда не надоедает." },
+        { text: "Ты не просто звезда. Ты легенда." },
+        { text: "Shine loud. Shine proud." }
+    ];
 
-      return (
-        <div className="min-h-screen relative bg-gradient-to-b from-[#0b0710] to-[#13081a] text-white overflow-hidden selection:bg-pink-600/20">
-          {/* Glow pulse wrapper: subtle pulse applied to entire page when secret mode active */}
-          <motion.div
-            animate={secretActive ? { filter: ["drop-shadow(0 0 8px rgba(160,120,255,0.12))", "drop-shadow(0 0 18px rgba(255,200,80,0.08))"], scale: [1, 1.007, 1] } : {}}
-            transition={secretActive ? { duration: 1.8, repeat: Infinity, ease: "easeInOut" } : { duration: 0.3 }}
-            className="min-h-screen relative z-0"
-          >
-            {/* Ambient background: subtle texture and stage */}
-            <div className="absolute inset-0 pointer-events-none z-0">
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30" />
-              {/* Stage beams (appear when secret active) */}
-              <AnimatePresence>
-                {secretActive && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.6 }}
-                    className="absolute inset-0 z-10"
-                    aria-hidden
-                  >
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: [0, 0.5, 0.25], y: [0, -6, 0] }}
-                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                      className="absolute left-1/2 -translate-x-1/2 top-0 h-full w-[16%] pointer-events-none"
-                      style={{
-                        background:
-                          "linear-gradient(180deg, rgba(255,235,180,0.06), rgba(160,120,255,0.05) 30%, rgba(255,200,80,0.02) 60%, transparent 100%)",
-                        mixBlendMode: "screen",
-                        filter: "blur(28px)",
-                      }}
-                    />
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: [0, 0.36, 0.12], y: [0, -10, 0] }}
-                      transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut", delay: 0.28 }}
-                      className="absolute left-1/4 top-0 h-full w-[10%] pointer-events-none"
-                      style={{
-                        background:
-                          "linear-gradient(180deg, rgba(160,120,255,0.05), rgba(255,200,80,0.03) 30%, transparent 100%)",
-                        mixBlendMode: "screen",
-                        filter: "blur(36px)",
-                      }}
-                    />
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: [0, 0.28, 0.08], y: [0, -8, 0] }}
-                      transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut", delay: 0.56 }}
-                      className="absolute right-1/4 top-0 h-full w-[10%] pointer-events-none"
-                      style={{
-                        background:
-                          "linear-gradient(180deg, rgba(255,200,80,0.04), rgba(160,120,255,0.04) 30%, transparent 100%)",
-                        mixBlendMode: "screen",
-                        filter: "blur(36px)",
-                      }}
-                    />
-                  </motion.div>
-                )}
-              </AnimatePresence>
+    return (
+        <motion.div
+            className={`min-h-screen bg-[#0b0b0f] text-white overflow-hidden relative transition-colors duration-1000 bg-gradient-to-br ${activeColor}`}
+            animate={isSecretMode ? {
+                boxShadow: [
+                    "inset 0 0 50px rgba(147,51,234,0.3)",
+                    "inset 0 0 150px rgba(147,51,234,0.7)",
+                    "inset 0 0 50px rgba(147,51,234,0.3)"
+                ]
+            } : {
+                boxShadow: "inset 0 0 0px rgba(0,0,0,0)"
+            }}
+            transition={{ duration: 1.5, repeat: isSecretMode ? Infinity : 0, ease: "easeInOut" }}
+        >
 
-              {/* Particles (golden + purple) */}
-              <div className="absolute inset-0 z-20 pointer-events-none">
-                {particles.map((p) => (
-                  <motion.div
-                    key={p.id}
-                    initial={{ opacity: 0.06, scale: 0.85 }}
-                    animate={
-                      secretActive
-                        ? {
-                            y: [0, -18 - (p.id % 6), 0],
-                            x: [0, (p.id % 2 === 0 ? -8 : 8), 0],
-                            opacity: [0.12, 0.95, 0.22],
-                            scale: [1, 1.6, 1],
-                          }
-                        : {
-                            y: [0, p.id % 2 === 0 ? -6 : 6, 0],
-                            opacity: [0.06, 0.3, 0.06],
-                            scale: [0.9, 1, 0.9],
-                          }
-                    }
-                    transition={
-                      secretActive
-                        ? { duration: 2.6 + ((p.id % 5) * 0.12), delay: p.delay, repeat: Infinity, ease: "easeInOut" }
-                        : { duration: 6 + (p.id % 4), delay: p.delay, repeat: Infinity, ease: "easeInOut" }
-                    }
-                    style={{
-                      left: `${p.left}%`,
-                      top: `${p.top}%`,
-                      width: p.size,
-                      height: p.size,
-                      borderRadius: 9999,
-                      boxShadow: secretActive ? "0 6px 20px rgba(255,200,80,0.14), 0 2px 8px rgba(160,120,255,0.06)" : "0 4px 14px rgba(0,0,0,0.2)",
-                      background: p.id % 2 === 0 ? "radial-gradient(circle at 30% 30%, rgba(255,215,120,0.9), rgba(255,200,80,0.6))" : "radial-gradient(circle at 30% 30%, rgba(160,120,255,0.95), rgba(120,80,220,0.6))",
-                      mixBlendMode: "screen",
-                      transformOrigin: "center",
-                      position: "absolute",
-                    }}
-                  />
-                ))}
-              </div>
+            {/* Background Effects */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
 
-              {/* Bass-pulse visual (no audio) */}
-              <AnimatePresence>
-                {secretActive && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 0.18, scale: [0.98, 1.06, 0.98] }}
-                    exit={{ opacity: 0, scale: 0.98 }}
-                    transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute left-1/2 -translate-x-1/2 bottom-12 z-30 pointer-events-none"
-                    style={{
-                      width: 460,
-                      height: 220,
-                      borderRadius: 240,
-                      background: "radial-gradient(ellipse at center, rgba(255,200,80,0.08), rgba(160,120,255,0.06) 45%, transparent 70%)",
-                      filter: "blur(36px)",
-                    }}
-                  />
-                )}
-              </AnimatePresence>
-            </div>
+                {/* Darkening overlay in Secret Mode */}
+                <AnimatePresence>
+                    {isSecretMode && (
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 0.6 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 1.5 }}
+                            className="absolute inset-0 bg-black/80 z-0"
+                        />
+                    )}
+                </AnimatePresence>
 
-            {/* Page content */}
-            <header className="relative z-40 pt-28 pb-10 px-6 max-w-5xl mx-auto text-center">
-              <motion.div
-                initial={{ opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                className="inline-flex items-center gap-3 bg-white/6 px-3 py-2 rounded-full border border-white/8 backdrop-blur-sm mx-auto mb-6"
-              >
-                <Sparkles className="w-5 h-5 text-pink-200" />
-                <span className="text-xs uppercase tracking-widest text-white/90">Ariana</span>
-              </motion.div>
-
-              <motion.h1
-                initial={{ scale: 0.98, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.9, ease: "easeOut" }}
-                className="text-4xl md:text-6xl font-serif text-white drop-shadow-[0_8px_30px_rgba(0,0,0,0.6)]"
-              >
-                Secret Fan Mode — Try typing...
-              </motion.h1>
-
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.9, delay: 0.16 }}
-                className="mt-4 text-sm text-white/70 max-w-2xl mx-auto"
-              >
-                Type the hidden word anywhere: "BeyHive" or "Navy" (case-insensitive) to reveal a premium, concert-style surprise.
-              </motion.p>
-            </header>
-
-            {/* Mock gallery (keeps page feeling complete) */}
-            <section className="px-6 max-w-6xl mx-auto py-8 z-40">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {[1, 2, 3].map((n) => (
-                  <motion.div
-                    key={n}
-                    initial={{ opacity: 0, y: 12 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-                    className="rounded-2xl overflow-hidden border border-white/6 bg-gradient-to-b from-white/3 to-transparent p-2"
-                  >
-                    <div className="aspect-video bg-gradient-to-br from-[#1b1124] to-[#0c0510] rounded-lg flex items-center justify-center">
-                      <div className="text-sm text-white/80 px-6">Memory Space {n}</div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </section>
-
-            {/* Animated personal message area */}
-            <section className="px-6 max-w-4xl mx-auto py-6 z-40">
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9 }}
-                className="bg-white/6 border border-white/8 rounded-2xl p-6 text-center"
-              >
-                <h3 className="text-xl font-medium">For a Queen-Like Energy</h3>
-                <p className="text-sm text-white/70 mt-2">You are luminous, confident, and unforgettable — a private stage reserved for greatness.</p>
-              </motion.div>
-            </section>
-          </motion.div>
-
-          {/* Secret Fan Mode Overlay */}
-          <AnimatePresence>
-            {overlayVisible && (
-              <motion.div
-                key="fan-mode-overlay"
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                variants={overlayVariants}
-                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                className="fixed inset-0 z-50 flex items-center justify-center p-6"
-              >
-                {/* Slight darken backdrop */}
+                {/* Stage Lights */}
                 <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 0.6 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.35 }}
-                  className="absolute inset-0 bg-black backdrop-blur-sm pointer-events-none"
+                    animate={{ rotate: [0, 5, -5, 0], opacity: [0.3, 0.5, 0.3] }}
+                    transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                    className="absolute -top-1/4 -left-1/4 w-[150%] h-[150%] bg-[radial-gradient(circle,rgba(88,28,135,0.2)_0%,rgba(0,0,0,0)_60%)] blur-3xl transform skew-x-12 z-0"
+                />
+                <motion.div
+                    animate={{ rotate: [0, -5, 5, 0], opacity: [0.2, 0.4, 0.2] }}
+                    transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+                    className="absolute top-1/2 -right-1/4 w-[150%] h-[150%] bg-[radial-gradient(circle,rgba(127,29,29,0.2)_0%,rgba(212,175,55,0.1)_30%,rgba(0,0,0,0)_60%)] blur-3xl transform -skew-x-12 z-0"
                 />
 
-                {/* Overlay content card */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.96 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0.96, scale: 0.98 }}
-                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                  className="relative z-60 max-w-3xl mx-auto bg-gradient-to-br from-[#13061a]/80 to-[#1f0b25]/70 border border-white/8 rounded-3xl p-8 text-center shadow-[0_40px_120px_rgba(10,6,20,0.8)]"
-                >
-                  <h2 className="text-3xl md:text-4xl font-serif text-[rgba(255,230,180,1)] mb-3">Queen Recognizes Queen.</h2>
-                  <p className="text-sm text-white/80 mb-6">You know the energy. You live the legacy.</p>
+                {/* Secret Mode Intense Beams */}
+                <AnimatePresence>
+                    {isSecretMode && (
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ rotate: [0, 15, -15, 0], opacity: [0.5, 0.9, 0.5] }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+                            className="absolute top-0 right-1/4 w-[200%] h-[200%] bg-[radial-gradient(ellipse,rgba(212,175,55,0.25)_0%,rgba(147,51,234,0.2)_30%,rgba(0,0,0,0)_60%)] blur-3xl transform skew-y-12 z-0"
+                        />
+                    )}
+                </AnimatePresence>
 
-                  <div className="flex items-center justify-center gap-4">
-                    <motion.button
-                      onClick={deactivateSecretMode}
-                      whileHover={{ scale: 1.03 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="px-5 py-2 rounded-full bg-gradient-to-tr from-[#ffd77a] to-[#b88bff] text-black font-medium border border-white/10 shadow-md"
+                {/* Particles */}
+                {[...Array(isSecretMode ? 80 : 30)].map((_, i) => (
+                    <motion.div
+                        key={`particle-${i}-${isSecretMode}`}
+                        className={`absolute rounded-full shadow-[0_0_15px_rgba(212,175,55,0.8)] z-0 ${isSecretMode
+                            ? (Math.random() > 0.5 ? 'bg-purple-400' : 'bg-[#d4af37]')
+                            : (mood === 'diamond' ? 'bg-cyan-300' : mood === 'savage' ? 'bg-red-400' : 'bg-[#d4af37]')
+                            }`}
+                        style={{
+                            width: isSecretMode ? Math.random() * 6 + 2 : Math.random() * 4 + 1,
+                            height: isSecretMode ? Math.random() * 6 + 2 : Math.random() * 4 + 1,
+                            left: `${Math.random() * 100}%`,
+                            top: `${Math.random() * 100}%`,
+                        }}
+                        animate={{
+                            y: [0, -100 - Math.random() * (isSecretMode ? 400 : 200)],
+                            opacity: [0, Math.random() * 0.8 + 0.2, 0],
+                            scale: [0, isSecretMode ? 1.5 : 1, 0]
+                        }}
+                        transition={{
+                            duration: isSecretMode ? Math.random() * 4 + 3 : Math.random() * 5 + 5,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: Math.random() * 5
+                        }}
+                    />
+                ))}
+            </div>
+
+            <div className={`relative z-10 container mx-auto px-4 py-20 flex flex-col items-center ${isSecretMode ? 'blur-sm pointer-events-none' : ''} transition-all duration-1000`}>
+
+                {/* 1. HERO SECTION */}
+                <section className="text-center min-h-[60vh] flex flex-col justify-center items-center w-full">
+                    <motion.div
+                        initial={{ opacity: 0, y: 50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1.5, ease: "easeOut" }}
                     >
-                      Return to Reality
+                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 tracking-tight relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-gray-500 via-white to-gray-500 bg-[length:200%_auto]">
+                            <motion.span
+                                animate={{ backgroundPosition: ["200% center", "-200% center"] }}
+                                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                                className="bg-clip-text text-transparent bg-gradient-to-r from-white via-[#d4af37] to-white"
+                            >
+                                С 8 Марта, Айзере —<br />Ты настоящая Queen.
+                            </motion.span>
+                        </h1>
+                        <motion.p
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 1, duration: 1.5 }}
+                            className="text-xl md:text-3xl text-gray-400 font-light tracking-wide mt-4 md:mt-8"
+                        >
+                            Сила. Грация. Уверенность. Идеальный ритм.
+                        </motion.p>
+                    </motion.div>
+                </section>
+
+                {/* 2. DIVA ENERGY CARDS */}
+                <section className="py-24 w-full max-w-6xl">
+                    <motion.h2
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        className="text-3xl md:text-4xl font-bold text-center mb-16 text-[#d4af37] tracking-widest uppercase"
+                    >
+                        Diva Energy
+                    </motion.h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {cards.map((card, idx) => (
+                            <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: "-50px" }}
+                                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                                whileHover={{ scale: 1.05, rotateX: 5, rotateY: -5 }}
+                                className="group relative p-10 min-h-[160px] flex items-center justify-center rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 transition-all duration-300 hover:border-[#d4af37] hover:shadow-[0_0_30px_rgba(212,175,55,0.3)] overflow-hidden cursor-pointer"
+                                style={{ transformStyle: "preserve-3d", perspective: "1000px" }}
+                            >
+                                <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                                {/* Shine effect */}
+                                <div className="absolute -inset-full h-full w-1/2 z-0 block transform -skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:animate-shine" />
+
+                                <p className="relative z-10 text-xl font-medium text-center text-gray-200 group-hover:text-white transition-colors">
+                                    {card.text}
+                                </p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </section>
+
+                {/* 3. CHOOSE YOUR MOOD */}
+                <section className="py-24 text-center w-full max-w-4xl">
+                    <h2 className="text-3xl md:text-4xl font-bold mb-12 text-gray-300 tracking-wider uppercase">Choose Your Mood</h2>
+                    <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                        <button onClick={() => setMood('queen')} className="px-10 py-4 rounded-full text-xl font-medium border border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black transition-all shadow-[0_0_15px_rgba(212,175,55,0.2)] hover:shadow-[0_0_35px_rgba(212,175,55,0.6)]">
+                            Queen Mode 👑
+                        </button>
+                        <button onClick={() => setMood('savage')} className="px-10 py-4 rounded-full text-xl font-medium border border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-all shadow-[0_0_15px_rgba(239,68,68,0.2)] hover:shadow-[0_0_35px_rgba(239,68,68,0.6)]">
+                            Savage Mode 🔥
+                        </button>
+                        <button onClick={() => setMood('diamond')} className="px-10 py-4 rounded-full text-xl font-medium border border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-black transition-all shadow-[0_0_15px_rgba(34,211,238,0.2)] hover:shadow-[0_0_35px_rgba(34,211,238,0.6)]">
+                            Diamond Mode 💎
+                        </button>
+                    </div>
+
+                    <div className="mt-16 h-24 flex items-center justify-center">
+                        <AnimatePresence mode="wait">
+                            {mood && (
+                                <motion.div
+                                    key={mood}
+                                    initial={{ opacity: 0, scale: 0.8, y: 30 }}
+                                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                                    exit={{ opacity: 0, scale: 0.8, y: -30 }}
+                                    transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                                    className="text-2xl md:text-3xl font-light italic"
+                                    style={{
+                                        color: mood === 'diamond' ? '#67e8f9' : mood === 'savage' ? '#fca5a5' : '#fde047'
+                                    }}
+                                >
+                                    "{moodMessages[mood]}"
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </div>
+                </section>
+
+                {/* 4. LUXURY MESSAGE REVEAL */}
+                <section className="py-40 w-full flex justify-center">
+                    <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => setIsModalOpen(true)}
+                        className="group relative px-14 py-6 bg-gradient-to-r from-[#d4af37] via-[#fef08a] to-[#d4af37] text-black font-extrabold text-2xl md:text-3xl rounded-full overflow-hidden shadow-[0_0_50px_rgba(212,175,55,0.4)] transition-all hover:shadow-[0_0_80px_rgba(212,175,55,0.9)]"
+                    >
+                        <div className="absolute inset-0 bg-white/30 transform -skew-x-12 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-1000 ease-out" />
+                        Open Your Crown
                     </motion.button>
-                  </div>
-                </motion.div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      );
-    }
+                </section>
+
+            </div>
+
+            {/* SECRET FAN MODE OVERLAY */}
+            <AnimatePresence>
+                {isSecretMode && (
+                    <motion.div
+                        initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
+                        animate={{ opacity: 1, backdropFilter: "blur(6px)" }}
+                        exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
+                        transition={{ duration: 1.5 }}
+                        className="fixed inset-0 z-[60] flex flex-col items-center justify-center p-4 bass-pulse-container pointer-events-auto"
+                    >
+                        <motion.div
+                            animate={{ scale: [1, 1.05, 1] }}
+                            transition={{ duration: 0.8, repeat: Infinity, ease: "easeInOut" }}
+                            className="text-center"
+                        >
+                            <motion.h2
+                                initial={{ y: -30, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                transition={{ delay: 0.8, duration: 1.2, type: "spring" }}
+                                className="text-6xl md:text-8xl lg:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-purple-300 to-[#d4af37] uppercase tracking-widest drop-shadow-[0_0_40px_rgba(212,175,55,0.5)] mb-6"
+                            >
+                                Queen Recognizes<br />Queen.
+                            </motion.h2>
+                            <motion.p
+                                initial={{ y: 30, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                transition={{ delay: 1.5, duration: 1 }}
+                                className="text-3xl md:text-5xl text-purple-200 font-light italic drop-shadow-md"
+                            >
+                                "You know the energy. You live the legacy."
+                            </motion.p>
+                        </motion.div>
+
+                        <motion.button
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: 3, duration: 1 }}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={() => setIsSecretMode(false)}
+                            className="absolute bottom-16 md:bottom-24 px-10 py-4 rounded-full border border-purple-500/50 text-purple-300 hover:bg-purple-900/40 hover:text-white transition-all shadow-[0_0_20px_rgba(147,51,234,0.3)] hover:shadow-[0_0_40px_rgba(147,51,234,0.7)] backdrop-blur-md text-xl md:text-2xl font-medium tracking-wide"
+                        >
+                            Return to Reality
+                        </motion.button>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* REVEAL MODAL */}
+            <AnimatePresence>
+                {isModalOpen && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.8 }}
+                        className={`fixed inset-0 z-50 flex items-center justify-center bg-[#0b0b0f]/95 backdrop-blur-2xl p-4 md:p-8 ${isSecretMode ? 'hidden' : ''}`}
+                    >
+                        {/* Modal Particles */}
+                        {[...Array(60)].map((_, i) => (
+                            <motion.div
+                                key={`modal-particle-${i}`}
+                                className="absolute w-2 h-2 rounded-full bg-[#d4af37] shadow-[0_0_20px_#d4af37]"
+                                initial={{ x: 0, y: 0, opacity: 1, scale: 1 }}
+                                animate={{
+                                    x: (Math.random() - 0.5) * windowDimensions.width * 1.5,
+                                    y: (Math.random() - 0.5) * windowDimensions.height * 1.5,
+                                    opacity: 0,
+                                    scale: 0
+                                }}
+                                transition={{ duration: 2.5 + Math.random() * 2, ease: "easeOut" }}
+                            />
+                        ))}
+
+                        <motion.div
+                            initial={{ scale: 0.8, y: 50, opacity: 0 }}
+                            animate={{ scale: 1, y: 0, opacity: 1 }}
+                            exit={{ scale: 1.1, opacity: 0 }}
+                            transition={{ delay: 0.4, duration: 1, type: "spring" }}
+                            className="max-w-4xl w-full p-12 md:p-20 rounded-[3rem] bg-neutral-900/40 border border-[#d4af37]/30 shadow-[0_0_80px_rgba(212,175,55,0.2)] text-center relative overflow-hidden"
+                        >
+                            <button
+                                onClick={() => setIsModalOpen(false)}
+                                className="absolute top-8 right-8 text-gray-400 hover:text-[#d4af37] transition-colors"
+                            >
+                                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" /></svg>
+                            </button>
+
+                            <h3 className="text-5xl md:text-7xl font-serif text-[#d4af37] mb-12 mt-4 tracking-wide shadow-black drop-shadow-lg">
+                                Ты — Искусство.
+                            </h3>
+                            <div className="space-y-8 text-xl md:text-3xl text-gray-200 font-light leading-relaxed">
+                                <p>
+                                    Ты не просто идешь по жизни — ты задаешь ей ритм.
+                                </p>
+                                <p>
+                                    В тебе сочетается невероятная сила и хрупкая элегантность.
+                                    Твоя энергия заряжает залы, а твой свет способен разогнать любую тьму.
+                                </p>
+                                <p className="text-[#d4af37] font-medium text-3xl md:text-4xl pt-8">
+                                    Сияй. Вдохновляй. Покоряй.
+                                </p>
+                                <p className="italic text-gray-400 text-lg md:text-xl pt-12">
+                                    С праздником, бесподобная Айзере.
+                                </p>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            <style dangerouslySetInnerHTML={{
+                __html: `
+        @keyframes shine {
+          100% { transform: translateX(300%) skewX(-12deg); }
+        }
+        .animate-shine {
+          animation: shine 1.5s ease-in-out forwards;
+        }
+        .bass-pulse-container {
+          animation: bassPulse 0.8s infinite alternate ease-in-out;
+        }
+        @keyframes bassPulse {
+          0% { transform: scale(1); filter: brightness(1); }
+          100% { transform: scale(1.01); filter: brightness(1.1); }
+        }
+      `}} />
+        </motion.div>
+    );
+};
+
+export default Aizere;
+
