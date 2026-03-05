@@ -44,7 +44,7 @@ export default function Aigerim() {
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         >
           <h1 className="text-5xl md:text-7xl font-serif text-emerald-200 tracking-tight">Айгерим</h1>
-          <p className="text-sm text-emerald-100/70 mt-3">VIP Kazakh Queen — elegance, tradition, modern power.</p>
+          <p className="text-sm text-emerald-100/70 mt-3">С 8 марта, Айгерим! </p>
         </motion.div>
       </header>
 
@@ -62,9 +62,9 @@ export default function Aigerim() {
               <Crown className="w-5 h-5 text-gold-300" />
               <span className="text-xs uppercase tracking-widest">Royal</span>
             </div>
-            <h2 className="text-3xl font-serif">Высокий статус, мягкая сила</h2>
+            <h2 className="text-3xl font-serif">Девушка Орынбека</h2>
             <p className="text-sm text-emerald-100/80 max-w-xl leading-relaxed">
-              This page blends modern Kazakh ornament with slow, premium motion — a private palace in the browser.
+              Желаем тебе счастья, здоровья, хорошего настроения и успехов в учёбе. Оставайся такой же доброй, весёлой и радостной!
             </p>
           </motion.div>
 
@@ -103,7 +103,6 @@ export default function Aigerim() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <p className="text-sm text-emerald-100/80">Heritage meets modern</p>
             </motion.div>
           ))}
         </div>
@@ -122,7 +121,7 @@ export default function Aigerim() {
             <div className="w-28 h-28 rounded-full bg-gradient-to-tr from-emerald-600 to-[#82d3a0] flex items-center justify-center border-2 border-gold-300 shadow-[0_20px_60px_rgba(4,69,48,0.35)] cursor-pointer">
               <Sparkles className="w-10 h-10 text-white/90" />
             </div>
-            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 text-xs text-emerald-100/80">Open Royal Seal</div>
+            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 text-xs text-emerald-100/80">Open Seal</div>
           </motion.div>
 
           <AnimatePresence>
@@ -134,8 +133,8 @@ export default function Aigerim() {
                 transition={{ duration: 0.6, ease: [0.2, 0.9, 0.3, 1] }}
                 className="mt-4 bg-white/6 border border-white/8 rounded-2xl p-6 max-w-md text-center"
               >
-                <h3 className="text-xl font-serif text-emerald-100 mb-2">Царица дня</h3>
-                <p className="text-sm text-emerald-50/80">Пусть уверенность и королевская грация сопутствуют тебе всегда. С 8 Марта!</p>
+                <h3 className="text-xl font-serif text-emerald-100 mb-2">Дорогая, Айгерим</h3>
+                <p className="text-sm text-emerald-50/80">Пусть все твои мечты сбываются и ты двигалась только вперед. С 8 Марта!</p>
               </motion.div>
             )}
           </AnimatePresence>
