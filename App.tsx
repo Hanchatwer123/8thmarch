@@ -33,7 +33,7 @@ const App: React.FC = () => {
             <Route path="/3p9yuuis013wuth" element={<Aigerim />} />
             <Route path="/v8ko9y3ypqakjvp" element={<Bagila />} />
             <Route path="/8wywvqx0ga0sg2q" element={<Aizeshka />} />
-            <Route path="/" element={<Navigate to="/venera" replace />} />
+            <Route path="/" element={<Navigate to="/" replace />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <ToastContainer
