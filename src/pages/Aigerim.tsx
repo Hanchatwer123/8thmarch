@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Crown, Sparkles } from "lucide-react";
-import aigerimPhoto from "../photos/aigerim.png";
+import aigerimPhoto from "../photo/aigerim.png";
 
 export default function Aigerim() {
   const [sealOpen, setSealOpen] = useState(false);
