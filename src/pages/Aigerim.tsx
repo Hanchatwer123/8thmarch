@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Crown, Sparkles } from "lucide-react";
+import aigerimPhoto from "../photos/aigerim.png";
 
 export default function Aigerim() {
   const [sealOpen, setSealOpen] = useState(false);
@@ -77,7 +78,7 @@ export default function Aigerim() {
           >
             <div className="aspect-[4/5] rounded-3xl overflow-hidden border border-white/6 bg-[#042822]/80 p-6">
               <img
-                src="https://images.unsplash.com/photo-1549880338-65ddcdfd017b?q=80&w=900&auto=format&fit=crop"
+                src={aigerimPhoto}
                 alt="aigerim"
                 className="w-full h-full object-cover rounded-xl opacity-90"
               />
