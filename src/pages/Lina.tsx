@@ -61,7 +61,7 @@ import React, { useState } from 'react';
                   className="group relative aspect-[3/4] overflow-hidden bg-zinc-900 border border-zinc-800"
                 >
                   <img 
-                    src={`https://raw.githubusercontent.com/hanchatwer123/8thmarch/main/src/photo/lina.png`}
+                    src={`https://raw.githubusercontent.com/hanchatwer123/8thmarch/main/src/photo/lina.jpg`}
                     alt="Dark aesthetic"
                     className="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000 ease-out"
                   />
