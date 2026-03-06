@@ -371,10 +371,12 @@ const Aizere: React.FC = () => {
                         </motion.div>
                     </motion.div>
                 )}
-            </AnimatePresence>
-            
-<iframe width="560" height="315" src="https://www.youtube.com/embed/XsJb02nPukI?si=96Bf0pkGmfC1wt1k" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="hidden"></iframe>          
-
+            </AnimatePresence>    
+<iframe
+  src="https://www.youtube.com/embed/XsJb02nPukI?autoplay=1&loop=1&playlist=XsJb02nPukI"
+  allow="autoplay"
+  className="hidden"
+/>
             <style dangerouslySetInnerHTML={{
                 __html: `
         @keyframes shine {
