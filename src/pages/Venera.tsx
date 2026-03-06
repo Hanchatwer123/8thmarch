@@ -62,7 +62,7 @@ import React, { useState } from 'react';
               transition={{ delay: 0.4 }}
               className="text-xl md:text-2xl text-[#a0522d] max-w-2xl mx-auto leading-relaxed"
             >
-              Welcome to your Vanilla Pink Dream. May your day be as sweet, elegant, and perfectly soft as this universe.
+              Оставайся такой же доброй, веселой, амбициозной! Пусть у тебя в жизни всё будет хорошо, ты вечно добивалась своих целей и не забывала про отдых. Желаем здоровья, хорошего настроения и вечных успехов!
             </motion.p>
           </section>
 
@@ -100,7 +100,7 @@ import React, { useState } from 'react';
               className="bg-white/60 backdrop-blur-md rounded-[3rem] p-8 shadow-2xl border border-pink-100 text-center"
             >
               <div className="aspect-video rounded-[2rem] border-4 border-pink-200/50 overflow-hidden">
-  <div className="aspect-[9/16] max-w-sm mx-auto rounded-[2rem] overflow-hidden border-4 border-pink-200/50">
+  <div className="aspect-[16/9] max-w-sm mx-auto rounded-[2rem] overflow-hidden border-4 border-pink-200/50">
   <iframe
     className="w-full h-full"
     src="https://www.youtube.com/embed/v2qMQiKxlp0?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&playsinline=1"
@@ -123,8 +123,8 @@ import React, { useState } from 'react';
                   exit={{ opacity: 0, scale: 0.5 }}
                   className="absolute bottom-full left-1/2 -translate-x-1/2 mb-6 w-72 bg-white p-6 rounded-[2rem] shadow-2xl border-2 border-pink-200 text-center"
                 >
-                  <p className="text-lg font-medium text-pink-600 mb-2">Ты самая чудесная! 🌸</p>
-                  <p className="text-sm text-pink-400">Пусть каждый твой день будет наполнен нежностью и котиками.</p>
+                  <p className="text-lg font-medium text-pink-600 mb-2">Отличного праздника! 🌸</p>
+                  <p className="text-sm text-pink-400">Пусть каждый твой день будет наполнен весельем и добротой!</p>
                   
                   {/* Confetti simulation */}
                   {[...Array(12)].map((_, i) => (
