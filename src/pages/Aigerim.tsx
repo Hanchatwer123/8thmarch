@@ -98,7 +98,7 @@ export default function Aigerim() {
             >
               <div className="h-44 rounded-lg overflow-hidden mb-3">
                 <img
-                  src={`https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=900&auto=format&fit=crop`}
+                  src={`https://raw.githubusercontent.com/hanchatwer123/8thmarch/main/src/photo/aigerim2.jpeg`}
                   alt={`aigerim-${n}`}
                   className="w-full h-full object-cover"
                 />
