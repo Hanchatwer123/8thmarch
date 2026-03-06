@@ -84,8 +84,7 @@ import React, { useState } from 'react';
                 >
                   <div className="w-1/2 aspect-video bg-purple-950/50 border border-purple-800/20 rounded-lg overflow-hidden relative group">
                      <img 
-                        src={`https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?q=80&w=800&auto=format&fit=crop`}
-                        alt="Aesthetic detail"
+                        src={`https://raw.githubusercontent.com/hanchatwer123/8thmarch/main/src/photo/dilnaz2.jpg`}
                         className="w-full h-full object-cover opacity-40 group-hover:opacity-80 transition-opacity duration-700"
                       />
                   </div>
