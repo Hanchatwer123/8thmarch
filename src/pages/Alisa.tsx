@@ -9,9 +9,9 @@ export default function Alisa() {
   const [reveal, setReveal] = useState(false);
 
   const messages: Record<Exclude<ChoiceKey, null>, string> = {
-    A: "Твоя креативность — как игра, в которую хочется возвращаться снова и снова.",
-    B: "Ты наполняешь мир чувствами — нежно, смело и искренно.",
-    C: "Твоя искренность — редкий пиксель чистоты. С 8 Марта!",
+    A: "Твоя креативность - редка, продолжай быть такой же уникальной и скрашивать этот мир своим мышлением!",
+    B: "Твоя доброта искренняя и заразна! Продолжай делать этот мир добрее!",
+    C: "Твоя искренность - довольно редкое качество. Пусть эта честность всегда будет приносить тебе тёплые моменты в жизни. С 8 Марта!",
   };
 
   const choose = (k: ChoiceKey) => {
@@ -53,7 +53,7 @@ export default function Alisa() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-4xl md:text-6xl font-semibold"
         >
-          Алиса
+          Алиса,
         </motion.h1>
         <motion.p
           initial={{ y: 8, opacity: 0 }}
@@ -61,7 +61,7 @@ export default function Alisa() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-sm text-white/70 mt-2"
         >
-          Omori × Undertale dreamcore — choose the dialogue path.
+          С 8 марта!
         </motion.p>
       </header>
 
@@ -78,8 +78,7 @@ export default function Alisa() {
               className="rounded-md overflow-hidden border border-white/6 bg-white/3 aspect-square"
             >
               <img
-                src={`https://images.unsplash.com/photo-1534790566855-4cb788d389ec?q=80&w=800&auto=format&fit=crop`}
-                alt={`alisa-${n}`}
+                src={`https://raw.githubusercontent.com/hanchatwer123/8thmarch/src/main/photo/alisa.jpeg`}
                 className="w-full h-full object-cover image-rendering-pixelated"
                 style={{ imageRendering: "pixelated" }}
               />
@@ -95,7 +94,6 @@ export default function Alisa() {
             <MessageSquare className="w-10 h-10 text-white/90" />
             <div>
               <h3 className="text-lg font-medium">Выбери слово</h3>
-              <p className="text-sm text-white/70">Твой выбор формирует тёплое сообщение.</p>
             </div>
           </div>
 
@@ -106,7 +104,7 @@ export default function Alisa() {
               whileTap={{ scale: 0.96 }}
               className="px-3 py-2 rounded-md bg-white/8 hover:bg-white/12 transition"
             >
-              Creative
+              Креативность
             </motion.button>
             <motion.button
               onClick={() => choose("B")}
@@ -114,7 +112,7 @@ export default function Alisa() {
               whileTap={{ scale: 0.96 }}
               className="px-3 py-2 rounded-md bg-white/8 hover:bg-white/12 transition"
             >
-              Feeling
+              Доброта
             </motion.button>
             <motion.button
               onClick={() => choose("C")}
@@ -122,7 +120,7 @@ export default function Alisa() {
               whileTap={{ scale: 0.96 }}
               className="px-3 py-2 rounded-md bg-white/8 hover:bg-white/12 transition"
             >
-              Honest
+              Честность
             </motion.button>
           </div>
 
@@ -146,7 +144,7 @@ export default function Alisa() {
                     whileHover={{ scale: 1.03 }}
                     className="px-3 py-1 bg-white/8 rounded"
                   >
-                    Back
+                    Назад
                   </motion.button>
 
                   <motion.button
@@ -154,7 +152,7 @@ export default function Alisa() {
                     whileHover={{ scale: 1.03 }}
                     className="px-3 py-1 bg-white/10 rounded ml-auto"
                   >
-                    Reveal
+                    Раскрыть
                   </motion.button>
                 </div>
               </motion.div>
@@ -188,11 +186,16 @@ export default function Alisa() {
             <Play className="w-6 h-6 text-white" />
           </div>
           <div>
-            <p className="text-sm text-white/80">Little soundtrack space — imagine soft lo-fi piano</p>
-            <p className="text-xs text-white/60 mt-1">Press play in your head ✨</p>
+            <p className="text-xs text-white/60 mt-1">✨</p>
           </div>
-        </div>
+        </div> 
       </section>
+
+      <iframe
+  src="https://www.youtube.com/embed/0UkRqMFMZic?autoplay=1&loop=1&playlist=0UkRqMFMZic"
+  allow="autoplay"
+  className="hidden"
+/>
 
       <style>{`
             .image-rendering-pixelated {
