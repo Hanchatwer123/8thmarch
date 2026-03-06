@@ -169,8 +169,6 @@ const Aizere: React.FC = () => {
                             className="text-xl md:text-3xl text-gray-400 font-light tracking-wide mt-4 md:mt-8"
                         >
                             Baddie, diva, slay Shawty :)
-                            Всегда ходи радостной и никогда не испытывай грусть или печаль!
-                            Если тебе хоть раз не будет хватать меня, то можешь заходить на этот сайт, я его оставлю ради тебя, моя любовь ﾒ૦ﾒ૦💋
                         </motion.p>
                     </motion.div>
                 </section>
@@ -358,8 +356,10 @@ const Aizere: React.FC = () => {
                                 </p>
                                 <p>
                                     Спасибо, что являешься той, кем ты по настоящему являешься. Спасибо, что показываешь какого это когда тебя любят, ценят и уважают.
-                                    Для меня узнать тебя поближе это как один из семи чудес мира. Продолжай быть собой и пусть никто никогда не сможет стереть улыбку с твоего лица
+                                    Для меня узнать тебя поближе это как один из семи чудес мира. Продолжай быть собой и пусть никто никогда не сможет стереть улыбку с твоего лица!
                                     Надеюсь, что эта весна принесет тебе тепло и пусть все твои мечты сбываются!
+                                    Всегда ходи радостной и никогда не испытывай грусть или печаль!
+                                    Если тебе хоть раз не будет хватать меня, то можешь заходить на этот сайт, я его оставлю ради тебя, моя любовь ﾒ૦ﾒ૦💋
                                 </p>
                                 <p className="text-[#d4af37] font-medium text-3xl md:text-4xl pt-8">
                                     Продолжай делать этот мир лучше. Я верю в тебя чтобы ни не происходило.
@@ -373,11 +373,7 @@ const Aizere: React.FC = () => {
                 )}
             </AnimatePresence>
             
-<iframe
-  src="https://www.youtube.com/embed/XsJb02nPukI?autoplay=1&loop=1&playlist=XsJb02nPukI"
-  allow="autoplay"
-  className="hidden"
-/>            
+<iframe width="560" height="315" src="https://www.youtube.com/embed/XsJb02nPukI?si=96Bf0pkGmfC1wt1k" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="hidden"></iframe>          
 
             <style dangerouslySetInnerHTML={{
                 __html: `
