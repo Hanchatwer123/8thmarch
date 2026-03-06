@@ -103,7 +103,7 @@ import React, { useState } from 'react';
   <div className="aspect-[9/16] max-w-sm mx-auto rounded-[2rem] overflow-hidden border-4 border-pink-200/50">
   <iframe
     className="w-full h-full"
-    src="https://www.youtube.com/embed/VIDEO_ID?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&playsinline=1"
+    src="https://www.youtube.com/embed/v2qMQiKxlp0?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&playsinline=1"
     title="YouTube video"
     allow="autoplay; encrypted-media"
     allowFullScreen
