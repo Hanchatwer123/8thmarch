@@ -6,7 +6,7 @@ export default function Bagila() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#fefefe] via-[#f4fbff] to-[#e6f4ff] text-[#335f7a] overflow-hidden relative">
+    <div className="min-h-screen bg-gradient-to-b from-[#f6fbff] via-[#eef7ff] to-[#e2f1ff] text-[#335f7a] overflow-hidden relative">
       
       {/* Soft wind motion */}
       <div className="absolute inset-0 pointer-events-none">
@@ -76,24 +76,48 @@ export default function Bagila() {
         </div>
       </section>
 
-      {/* Golden sun surprise */}
-      <section className="px-6 max-w-3xl mx-auto py-12 z-30">
-        <div className="flex flex-col items-center gap-6">
+<motion.div
+  onClick={() => setOpen(!open)}
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.98 }}
+  className="relative cursor-pointer"
+>
 
+  {/* Sun */}
+  <div className="w-28 h-28 rounded-full bg-[#ffd66b] flex items-center justify-center shadow-[0_20px_60px_rgba(255,215,120,0.25)] border-2 border-[#ffe8a3] relative z-10">
+    <Sun className="w-10 h-10 text-white" />
+  </div>
+
+  {/* Sun rays animation */}
+  <AnimatePresence>
+    {open && (
+      <motion.div
+        initial={{ scale: 0.4, opacity: 0 }}
+        animate={{ scale: 1.4, opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.8 }}
+        className="absolute inset-0 flex items-center justify-center"
+      >
+        {[...Array(8)].map((_, i) => (
           <motion.div
-            onClick={() => setOpen(!open)}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.98 }}
-            className="relative cursor-pointer"
-          >
-            <div className="w-28 h-28 rounded-full bg-[#ffd66b] flex items-center justify-center shadow-[0_20px_60px_rgba(255,215,120,0.25)] border-2 border-[#ffe8a3]">
-              <Sun className="w-10 h-10 text-white" />
-            </div>
+            key={i}
+            initial={{ rotate: i * 45 }}
+            animate={{ rotate: i * 45 }}
+            className="absolute w-1 h-24 bg-yellow-300 rounded-full"
+            style={{
+              transformOrigin: "center bottom",
+            }}
+          />
+        ))}
+      </motion.div>
+    )}
+  </AnimatePresence>
 
-            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 text-xs text-[#5b86a4]">
-              Tap the Sun
-            </div>
-          </motion.div>
+  <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 text-xs text-[#5b86a4]">
+    Tap the Sun
+  </div>
+
+</motion.div>
 
           <AnimatePresence>
             {open && (
