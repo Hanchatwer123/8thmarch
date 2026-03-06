@@ -81,8 +81,7 @@ import React, { useState } from 'react';
                 >
                   <div className="aspect-square bg-pink-100 rounded-[1.5rem] overflow-hidden relative">
                     <img 
-                      src={`https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=800&auto=format&fit=crop`}
-                      alt="Cute cat aesthetic"
+                      src={`https://raw.githubusercontent.com/hanchatwer123/8thmarch/main/src/photo/venera.png`}
                       className="w-full h-full object-cover opacity-80 mix-blend-multiply"
                     />
                   </div>
@@ -100,10 +99,17 @@ import React, { useState } from 'react';
               viewport={{ once: true }}
               className="bg-white/60 backdrop-blur-md rounded-[3rem] p-8 shadow-2xl border border-pink-100 text-center"
             >
-              <div className="aspect-video bg-pink-50 rounded-[2rem] border-4 border-pink-200/50 flex items-center justify-center relative overflow-hidden group">
-                <Cat className="w-16 h-16 text-pink-200 group-hover:scale-110 transition-transform duration-500" />
-                <p className="absolute bottom-8 text-pink-400 font-medium">Video Memory Space</p>
-              </div>
+              <div className="aspect-video rounded-[2rem] border-4 border-pink-200/50 overflow-hidden">
+  <video
+    className="w-full h-full object-cover"
+    controls
+    autoPlay
+    loop
+    muted
+  >
+    <source src="/videos/venera.mp4" type="video/mp4" />
+  </video>
+</div>
             </motion.div>
           </section>
 
