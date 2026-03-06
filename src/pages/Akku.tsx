@@ -84,9 +84,6 @@ export default function Akku() {
                   className="w-full h-full object-cover opacity-80 mix-blend-screen"
                 />
               </div>
-              <div className="absolute bottom-4 left-4 text-sm text-blue-100/80 uppercase tracking-wide bg-black/30 px-3 py-1 rounded-full border border-white/5">
-                Scene {n}
-              </div>
             </motion.div>
           ))}
         </div>
