@@ -36,7 +36,7 @@ import React, { useState } from 'react';
               className="text-6xl md:text-8xl font-medium tracking-widest text-zinc-100 mb-8 uppercase"
               style={{ textShadow: '0 0 20px rgba(255,255,255,0.1)' }}
             >
-              Lina
+              С 8 марта, Лина!
             </motion.h1>
             <motion.p 
               initial={{ opacity: 0 }}
@@ -44,7 +44,7 @@ import React, { useState } from 'react';
               transition={{ duration: 1, delay: 1 }}
               className="text-lg md:text-xl text-zinc-500 max-w-xl mx-auto tracking-wide"
             >
-              Embrace the elegance of the shadows. Happy March 8th to a uniquely mysterious soul.
+             Желаем тебе счастья, весёлых дней, отличного настроения и побольше поводов для улыбки!
             </motion.p>
           </section>
 
@@ -61,7 +61,7 @@ import React, { useState } from 'react';
                   className="group relative aspect-[3/4] overflow-hidden bg-zinc-900 border border-zinc-800"
                 >
                   <img 
-                    src={`https://images.unsplash.com/photo-1509114397022-ed747cca3f65?q=80&w=800&auto=format&fit=crop`}
+                    src={`https://raw.githubusercontent.com/hanchatwer123/8thmarch/main/src/photo/lina.png`}
                     alt="Dark aesthetic"
                     className="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000 ease-out"
                   />
@@ -109,7 +109,7 @@ import React, { useState } from 'react';
                   >
                     <h3 className="text-2xl text-red-800 mb-4 tracking-wider uppercase">Оставайся собой</h3>
                     <p className="text-zinc-400 text-sm leading-loose">
-                      Твоя загадочность и элегантность — это искусство. Пусть этот день принесет тебе темную эстетику радости и силы.
+                      Продолжай радовать своих близких своим присутствием и улыбкой. Оставайся такой же загадочной и уникальной, с 8 марта!
                     </p>
                   </motion.div>
                 )}
