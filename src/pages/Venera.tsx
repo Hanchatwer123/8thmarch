@@ -100,15 +100,14 @@ import React, { useState } from 'react';
               className="bg-white/60 backdrop-blur-md rounded-[3rem] p-8 shadow-2xl border border-pink-100 text-center"
             >
               <div className="aspect-video rounded-[2rem] border-4 border-pink-200/50 overflow-hidden">
-  <video
-    className="w-full h-full object-cover"
-    controls
-    autoPlay
-    loop
-    muted
-  >
-    <source src="/videos/venera.mp4" type="video/mp4" />
-  </video>
+  <div className="aspect-video rounded-[2rem] border-4 border-pink-200/50 overflow-hidden">
+  <iframe
+    className="w-full h-full"
+    src="https://www.youtube.com/embed/v2qMQiKxlp0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen
+  />
+</div>
 </div>
             </motion.div>
           </section>
