@@ -61,8 +61,8 @@ import React, { useState } from 'react';
                 <div className="aspect-[4/5] w-full max-w-sm mx-auto rounded-t-full border border-purple-800/30 overflow-hidden relative shadow-[0_0_50px_rgba(88,28,135,0.2)]">
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0f071a] via-transparent to-transparent z-10" />
                   <img 
-                    src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=800&auto=format&fit=crop" 
-                    alt="Romantic dark floral"
+                    src="https://raw.githubusercontent.com/hanchatwer123/8thmarch/main/src/photo/dilnaz.jpeg" 
+
                     className="w-full h-full object-cover opacity-60 mix-blend-luminosity hover:mix-blend-normal transition-all duration-1000"
                   />
                 </div>
