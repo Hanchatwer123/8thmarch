@@ -30,7 +30,7 @@ export default function Bagila() {
           transition={{ duration: 0.8 }}
           className="text-4xl md:text-6xl font-serif text-[#3f6f8e]"
         >
-          Багила
+          С 8 марта, Багила!
         </motion.h1>
 
         <motion.p
@@ -39,7 +39,7 @@ export default function Bagila() {
           transition={{ duration: 1, delay: 0.2 }}
           className="text-sm text-[#547f9c]/80 mt-3"
         >
-          Clean, proud, and warm — a minimalist patriotic greeting.
+          Желаем тебе больше приятных моментов, радости в жизни, хорошего настроения и успехов и в жизни и в учебе!
         </motion.p>
       </header>
 
@@ -56,8 +56,7 @@ export default function Bagila() {
               className="rounded-lg overflow-hidden border border-white bg-[#ffffffee] p-1 shadow-sm"
             >
               <img
-                src={`https://placehold.co/800x400`}
-                alt={`bagila-${n}`}
+                src={`https://raw.githubusercontent.com/hanchatwer123/8thmarch/main/src/photo/baga.jpeg`}
                 className="w-full h-36 object-cover rounded-md"
               />
             </motion.div>
@@ -65,16 +64,17 @@ export default function Bagila() {
         </div>
       </section>
 
-      {/* Video area */}
-      <section className="px-6 max-w-4xl mx-auto py-6 z-10">
-        <div className="rounded-xl border border-white overflow-hidden bg-[#f9fdff] p-4">
-          <div className="aspect-video bg-[#eef7ff] rounded-md flex items-center justify-center">
-            <p className="text-[#567d99]">
-              A short captured moment — sunlight and serenity.
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* Photo showcase */}
+<section className="px-6 max-w-4xl mx-auto py-6 z-10">
+  <div className="rounded-xl border border-white overflow-hidden bg-[#f9fdff] p-4">
+    <div className="aspect-video rounded-md overflow-hidden">
+      <img
+        src="https://raw.githubusercontent.com/hanchatwer123/8thmarch/main/src/photo/baga2.jpg"
+        className="w-full h-full object-cover"
+      />
+    </div>
+  </div>
+</section>
 
 <motion.div
   onClick={() => setOpen(!open)}
@@ -133,8 +133,8 @@ export default function Bagila() {
                 </h3>
 
                 <p className="text-sm text-[#547f9c] mt-2">
-                  Пусть свет и гордость наполняют твой день.  
-                  Ты излучаешь чистоту и тепло.
+                  Пусть свет и счастье наполняют твой день!  
+                  Продолжай излучать чистоту и тепло!
                 </p>
               </motion.div>
             )}
