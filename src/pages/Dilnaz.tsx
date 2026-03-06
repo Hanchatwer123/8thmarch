@@ -41,14 +41,14 @@ import React, { useState } from 'react';
                 transition={{ duration: 1, ease: "easeOut" }}
                 className="flex-1 space-y-6"
               >
-                <p className="text-fuchsia-500/80 tracking-[0.3em] uppercase text-sm">Noir Romantic</p>
+                <p className="text-fuchsia-500/80 tracking-[0.3em] uppercase text-sm">8 марта</p>
                 <h1 className="text-6xl md:text-7xl font-light tracking-tight text-white mb-6">
                   С праздником,<br/>
-                  <span className="italic text-purple-400">Дильназ</span>
+                  <span className="italic text-purple-400">Дильназ!</span>
                 </h1>
                 <div className="w-12 h-[1px] bg-purple-500/50" />
                 <p className="text-lg text-purple-300/80 max-w-md leading-relaxed">
-                  Where darkness meets emotion. A cinematic journey dedicated to your unique, dramatic beauty.
+                  Желаем тебе отличнейшего настроения, вдохновения и приятных моментов. Всегда оставайся такой же смешной и продолжай сиять
                 </p>
               </motion.div>
 
@@ -90,9 +90,9 @@ import React, { useState } from 'react';
                       />
                   </div>
                   <div className="w-1/2 space-y-4">
-                    <h3 className="text-2xl text-purple-200">Midnight Thoughts</h3>
+                    <h3 className="text-2xl text-purple-200">беза да</h3>
                     <p className="text-purple-400/60 leading-relaxed text-sm">
-                      Elegance found in the quiet moments.
+                      я хз че писать, это твои фотки если ты не видишь
                     </p>
                   </div>
                 </motion.div>
@@ -137,9 +137,9 @@ import React, { useState } from 'react';
                     transition={{ duration: 1, delay: 0.5 }}
                     className="absolute inset-0 flex flex-col items-center justify-center text-purple-950 p-8 text-center"
                   >
-                    <h4 className="text-2xl font-bold mb-4">Ты сияешь</h4>
+                    <h4 className="text-2xl font-bold mb-4">Никогда не сомневайся в себе</h4>
                     <p className="text-sm font-medium opacity-80">
-                      Даже в самой глубокой ночи твой свет уникален. С праздником весны, оставайся такой же глубокой и прекрасной.
+                      Пусть все твои мечты сбываются, а дни будут насыщеннее чем прежде. Пусть все твои мечты сбываются!
                     </p>
                   </motion.div>
                 )}
