@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sun } from "lucide-react";
+import { section } from "framer-motion/client";
 
 export default function Bagila() {
   const [open, setOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#f6fbff] via-[#eef7ff] to-[#e2f1ff] text-[#335f7a] overflow-hidden relative">
-      
+
       {/* Soft wind motion */}
       <div className="absolute inset-0 pointer-events-none">
         <motion.div
@@ -65,88 +66,84 @@ export default function Bagila() {
       </section>
 
       {/* Photo showcase */}
-<section className="px-6 max-w-4xl mx-auto py-6 z-10">
-  <div className="rounded-xl border border-white overflow-hidden bg-[#f9fdff] p-4">
-    <div className="aspect-video rounded-md overflow-hidden">
-      <img
-        src="https://raw.githubusercontent.com/hanchatwer123/8thmarch/main/src/photo/baga2.jpg"
-        className="w-full h-full object-cover"
-      />
-    </div>
-  </div>
-</section>
-
-<motion.div
-  onClick={() => setOpen(!open)}
-  whileHover={{ scale: 1.05 }}
-  whileTap={{ scale: 0.98 }}
-  className="relative cursor-pointer"
->
-
-  {/* Sun */}
-  <div className="w-28 h-28 rounded-full bg-[#ffd66b] flex items-center justify-center shadow-[0_20px_60px_rgba(255,215,120,0.25)] border-2 border-[#ffe8a3] relative z-10">
-    <Sun className="w-10 h-10 text-white" />
-  </div>
-
-  {/* Sun rays animation */}
-  <AnimatePresence>
-    {open && (
-      <motion.div
-        initial={{ scale: 0.4, opacity: 0 }}
-        animate={{ scale: 1.4, opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.8 }}
-        className="absolute inset-0 flex items-center justify-center"
-      >
-        {[...Array(8)].map((_, i) => (
-          <motion.div
-            key={i}
-            initial={{ rotate: i * 45 }}
-            animate={{ rotate: i * 45 }}
-            className="absolute w-1 h-24 bg-yellow-300 rounded-full"
-            style={{
-              transformOrigin: "center bottom",
-            }}
-          />
-        ))}
-      </motion.div>
-    )}
-  </AnimatePresence>
-
-  <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 text-xs text-[#5b86a4]">
-    Tap the Sun
-  </div>
-
-</motion.div>
-
-          <AnimatePresence>
-            {open && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.5 }}
-                className="mt-4 bg-[#ffffffee] border border-[#fff0c4] rounded-2xl p-6 max-w-md text-center"
-              >
-                <h3 className="text-lg font-semibold text-[#3f6f8e]">
-                  С праздником!
-                </h3>
-
-                <p className="text-sm text-[#547f9c] mt-2">
-                  Пусть свет и счастье наполняют твой день!  
-                  Продолжай излучать чистоту и тепло!
-                </p>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
+      <section className="px-6 max-w-4xl mx-auto py-6 z-10">
+        <div className="rounded-xl border border-white overflow-hidden bg-[#f9fdff] p-4">
+          <div className="aspect-video rounded-md overflow-hidden">
+            <img
+              src="https://raw.githubusercontent.com/hanchatwer123/8thmarch/main/src/photo/baga2.jpg"
+              className="w-full h-full object-cover"
+            />
+          </div>
         </div>
       </section>
+
+      <motion.div
+        onClick={() => setOpen(!open)}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.98 }}
+        className="relative cursor-pointer"
+      >
+
+        {/* Sun */}
+        <div className="w-28 h-28 rounded-full bg-[#ffd66b] flex items-center justify-center shadow-[0_20px_60px_rgba(255,215,120,0.25)] border-2 border-[#ffe8a3] relative z-10">
+          <Sun className="w-10 h-10 text-white" />
+        </div>
+
+        {/* Sun rays animation */}
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              initial={{ scale: 0.4, opacity: 0 }}
+              animate={{ scale: 1.4, opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.8 }}
+              className="absolute inset-0 flex items-center justify-center"
+            >
+              {[...Array(8)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ rotate: i * 45 }}
+                  animate={{ rotate: i * 45 }}
+                  className="absolute w-1 h-24 bg-yellow-300 rounded-full"
+                  style={{
+                    transformOrigin: "center bottom",
+                  }}
+                />
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 text-xs text-[#5b86a4]">
+          Tap the Sun
+        </div>
+
+      </motion.div>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.5 }}
+            className="mt-4 bg-[#ffffffee] border border-[#fff0c4] rounded-2xl p-6 max-w-md text-center"
+          >
+            <h3 className="text-lg font-semibold text-[#3f6f8e]">
+              С праздником!
+            </h3>
+
+            <p className="text-sm text-[#547f9c] mt-2">
+              Пусть свет и счастье наполняют твой день!
+              Продолжай излучать чистоту и тепло!
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <footer className="absolute left-0 right-0 bottom-0 z-10">
         <div className="h-6 w-full bg-gradient-to-t from-white/60 to-transparent" />
       </footer>
-
     </div>
   );
 }
