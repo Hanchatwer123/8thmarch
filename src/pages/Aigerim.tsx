@@ -77,7 +77,7 @@ export default function Aigerim() {
           >
             <div className="aspect-[4/5] rounded-3xl overflow-hidden border border-white/6 bg-[#042822]/80 p-6">
               <img
-                src={aigerimPhoto}
+                src="https://raw.githubusercontent.com/hanchatwer123/8thmarch/main/src/photo/aigerim.jpeg"
                 alt="aigerim"
                 className="w-full h-full object-cover rounded-xl opacity-90"
               />
