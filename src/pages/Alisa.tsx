@@ -78,7 +78,7 @@ export default function Alisa() {
               className="rounded-md overflow-hidden border border-white/6 bg-white/3 aspect-square"
             >
               <img
-                src={`https://raw.githubusercontent.com/hanchatwer123/8thmarch/src/main/photo/alisa.jpeg`}
+                src={`https://raw.githubusercontent.com/hanchatwer123/8thmarch/main/src/photo/alisa.jpeg`}
                 className="w-full h-full object-cover image-rendering-pixelated"
                 style={{ imageRendering: "pixelated" }}
               />
