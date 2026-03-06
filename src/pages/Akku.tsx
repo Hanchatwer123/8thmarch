@@ -48,12 +48,9 @@ export default function Akku() {
           className="text-center"
         >
           <h1 className="text-5xl md:text-7xl font-serif tracking-tight mb-4 relative inline-block">
-            <span className="block leading-tight text-[#e0e8ff]">Сильная,</span>
-            <span className="block text-[#f3c6d3] text-opacity-80 text-5xl md:text-7xl leading-tight glitch-accents">Акку</span>
+            <span className="block leading-tight text-[#e0e8ff]">С 8 марта, </span>
+            <span className="block text-[#f3c6d3] text-opacity-80 text-5xl md:text-7xl leading-tight glitch-accents">Акку!</span>
           </h1>
-          <p className="text-sm text-blue-200/60 uppercase tracking-widest mt-3">
-            Cinematic Dark Fantasy — lightning and power
-          </p>
         </motion.div>
 
         <motion.div
@@ -63,8 +60,8 @@ export default function Akku() {
           className="mt-8 flex items-center justify-center gap-4"
         >
           <div className="rounded-lg bg-gradient-to-br from-black/40 to-white/2 border border-gray-800 p-4 shadow-2xl backdrop-blur-sm">
-            <p className="text-lg md:text-xl font-medium">You carry an epic story.</p>
-            <p className="text-sm text-blue-200/60 mt-2 max-w-xl">Power, mystery, and cinematic presence — today we celebrate your main character energy.</p>
+            <p className="text-lg md:text-xl font-medium">С праздником!</p>
+            <p className="text-sm text-blue-200/60 mt-2 max-w-xl">Желаем тебе ежедневного счастья, радости и хорошего настроения!</p>
           </div>
         </motion.div>
       </header>
@@ -83,8 +80,7 @@ export default function Akku() {
             >
               <div className="aspect-[16/10] bg-gradient-to-tr from-[#0b1930] to-[#0b1220] p-4 flex items-center justify-center">
                 <img
-                  src={`https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=1400&auto=format&fit=crop`}
-                  alt={`akku-${n}`}
+                  src={`https://raw.githubusercontent.com/hanchatwer123/8thmarch/main/src/photo/akku.jpg`}
                   className="w-full h-full object-cover opacity-80 mix-blend-screen"
                 />
               </div>
@@ -169,9 +165,9 @@ export default function Akku() {
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-full px-6"
             >
               <div className="mx-auto max-w-2xl bg-gradient-to-tr from-[#071233]/80 to-[#081a2a]/80 border border-white/10 p-8 rounded-2xl shadow-2xl text-center">
-                <h3 className="text-2xl md:text-3xl font-serif text-white mb-2">Сила и благородство</h3>
+                <h3 className="text-2xl md:text-3xl font-serif text-white mb-2">Грация</h3>
                 <p className="text-sm text-blue-100/80">
-                  Ты — молния в тихом небе. Желаю тебе власти, уверенности и ярких побед.
+                  Желаю тебе хорошего настроения, уверенности и ярких побед в жизни.
                 </p>
               </div>
             </motion.div>
