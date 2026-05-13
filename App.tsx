@@ -4,6 +4,7 @@ import { Theme } from '@radix-ui/themes';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 
 import Navigation from './src/components/Navigation';
 import Venera from './src/pages/Venera';
@@ -44,6 +45,7 @@ const App: React.FC = () => {
             pauseOnHover
           />
         </main>
+        <Analytics />
       </Router>
     </Theme>
   );
