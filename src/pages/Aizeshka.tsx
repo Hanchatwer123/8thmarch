@@ -403,7 +403,7 @@ const Aizere: React.FC = () => {
             setTimeout(() => {
                 fade.innerHTML = `
                     <div style="
-                        width:100%;
+                        width:30%;
                         height:100%;
                         display:flex;
                         align-items:center;
