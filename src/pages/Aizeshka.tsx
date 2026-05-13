@@ -408,9 +408,9 @@ const Aizere: React.FC = () => {
                         display:flex;
                         align-items:center;
                         justify-content:center;
-                        font-size:3rem;
+                        font-size:1rem;
                         color:white;
-                        letter-spacing:0.4em;
+                        letter-spacing:0.1em;
                         font-family:sans-serif;
                         opacity:0;
                         transition:opacity 2s ease;
