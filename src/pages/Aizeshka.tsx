@@ -377,6 +377,67 @@ const Aizere: React.FC = () => {
   allow="autoplay"
   className="hidden"
 />
+
+            {/* APOLOGY BUTTON */}
+<div className="w-full flex justify-center py-20 relative z-10">
+    <motion.button
+        whileHover={{ scale: 1.08 }}
+        whileTap={{ scale: 0.95 }}
+        onClick={() => {
+            document.body.style.overflow = 'hidden';
+
+            const fade = document.createElement('div');
+            fade.style.position = 'fixed';
+            fade.style.inset = '0';
+            fade.style.background = '#000';
+            fade.style.zIndex = '9999';
+            fade.style.opacity = '0';
+            fade.style.transition = 'opacity 4s ease';
+
+            document.body.appendChild(fade);
+
+            requestAnimationFrame(() => {
+                fade.style.opacity = '1';
+            });
+
+            setTimeout(() => {
+                fade.innerHTML = `
+                    <div style="
+                        width:100%;
+                        height:100%;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        font-size:3rem;
+                        color:white;
+                        letter-spacing:0.4em;
+                        font-family:sans-serif;
+                        opacity:0;
+                        transition:opacity 2s ease;
+                    ">
+                        прости
+                    </div>
+                `;
+
+                const text = fade.querySelector('div') as HTMLDivElement;
+
+                requestAnimationFrame(() => {
+                    text.style.opacity = '1';
+                });
+            }, 3500);
+        }}
+        className="px-14 py-5 rounded-full border border-white/20 bg-white/5 backdrop-blur-md text-white text-2xl md:text-3xl font-light tracking-[0.3em] uppercase transition-all duration-500 hover:border-[#d4af37] hover:text-[#d4af37] hover:shadow-[0_0_40px_rgba(212,175,55,0.4)]"
+    >
+        Привет, я подумал и пришел к выводу, что скорее всего это окончательный расход. Спасибо, что даёшь надежду, но снова возвращаться в отношения сейчас, таким какой я есть это ошибка и мне стоит измениться и стать человеком получше, так как я не хочу снова вредить тебе. Так как я действительно сотворил что-то, что на уровне социальной приемленности находится на самом дне.
+
+Возможно, в будущем, скором или нет, мы вновь встретимся и что-то да и заново начнется, всё таки бог любит троицу и мы получается встретимся в 3 раз. А пока стоит разойтись и пройти жизнь самим. В любом случае спасибо тебе за все наши моменты и я очень благодарен судьбе, что свела нас. Надеюсь тебе щас стало получше и ты не так сильно страдаешь. Если наша история действительно еще не закончена, то мы еще встретимся и как ты говорила, я надеюсь это будет в рандомный момент в астане. К этому моменту я надеюсь, что вся эта ситуация будет выглядет просто как прошлое, которое только и вспоминаешь, а не испытываешь ненависть или что-то в этом духе.
+
+Не факт, что такая отличная, красивая, умная девушка как ты, будет долго оставаться одной. Поэтому, я хочу попросить тебя не останавливаться на что-то низком, плохом, ты достойна лучшего и лучшего отношения к тебе. Ты можешь меня не слушать, и это окей, главное чтобы ты выбирала своим сердцем. И кстати, все твои тайны уйдут со мной, не переживай. Давай, спасибо тебе за всё и береги себя 🫶
+
+А, и еще, ну может ещё встретимся, встретимся когда пойдёт дождь.
+    </motion.button>
+</div>
+            
             <style dangerouslySetInnerHTML={{
                 __html: `
         @keyframes shine {
